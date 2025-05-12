@@ -1,0 +1,10 @@
+menus :
+- Play
+    - Career
+    - Speedrun
+    - Multiplayer
+- Settings
+    - Sounds : On/Off
+    - Music : On/Off
+- About us
+- Exit

@@ -1,39 +1,97 @@
 import os
 
+"""
+- game settings
+- images paths
+- animations images paths
+- animations speed
+- entities dimensions
+- entities positions
+- ball scores
+- ball speed
+- player speed
+"""
+
 # game settings
 game_name = "Ball Ninja"
+
+fps = 60
+blur_radius = 2
 
 screen_width = 800
 screen_height = 600
 screen_dimensions = (screen_width, screen_height)
 
-# image paths
+# images paths
 images_path = os.path.join("assets", "images")
+backgrounds_path = os.path.join(images_path, "backgrounds")
+sprites_path = os.path.join(images_path, "sprites")
 
-level_1_background_path = os.path.join(images_path, "baalbek.jpg")
-level_2_background_path = os.path.join(images_path, "beirut.jpg")
-level_3_background_path = os.path.join(images_path, "raouche.jpg")
-level_4_background_path = os.path.join(images_path, "saida.jpg")
-level_5_background_path = os.path.join(images_path, "tyre.jpg")
-level_6_background_path = os.path.join(images_path, "hermel.jpg")
+level_1_background_path = os.path.join(backgrounds_path, "baalbek.jpg")
+level_2_background_path = os.path.join(backgrounds_path, "beirut.jpg")
+level_3_background_path = os.path.join(backgrounds_path, "raouche.jpg")
+level_4_background_path = os.path.join(backgrounds_path, "saida.jpg")
+level_5_background_path = os.path.join(backgrounds_path, "tyre.jpg")
+level_6_background_path = os.path.join(backgrounds_path, "hermel.jpg")
 
-ball_path = os.path.join(images_path, "ball.png")
-player_path = os.path.join(images_path, "player.png")
+ball_path = os.path.join(sprites_path, "ball.png")
+player_forward_path = os.path.join(sprites_path, "player_forward.png")
+player_backward_path = os.path.join(sprites_path, "player_backward.png")
+ground_path = os.path.join(sprites_path, "ground.png")
+
+# animations images paths
+player_left_animation_path = os.path.join(sprites_path, "player_left_animation")
+player_right_animation_path = os.path.join(sprites_path, "player_right_animation")
+player_left_animation_images_paths = [
+    os.path.join(player_left_animation_path, "player_left_1.png"),
+    os.path.join(player_left_animation_path, "player_left_2.png"),
+    os.path.join(player_left_animation_path, "player_left_3.png"),
+    os.path.join(player_left_animation_path, "player_left_4.png"),
+    os.path.join(player_left_animation_path, "player_left_5.png"),
+    os.path.join(player_left_animation_path, "player_left_6.png"),
+    os.path.join(player_left_animation_path, "player_left_7.png"),
+    os.path.join(player_left_animation_path, "player_left_8.png"),
+    os.path.join(player_left_animation_path, "player_left_9.png"),
+    os.path.join(player_left_animation_path, "player_left_10.png"),
+    os.path.join(player_left_animation_path, "player_left_11.png"),
+    os.path.join(player_left_animation_path, "player_left_12.png"),
+    os.path.join(player_left_animation_path, "player_left_13.png"),
+    os.path.join(player_left_animation_path, "player_left_14.png"),
+]
+player_right_animation_images_paths = [
+    os.path.join(player_right_animation_path, "player_right_1.png"),
+    os.path.join(player_right_animation_path, "player_right_2.png"),
+    os.path.join(player_right_animation_path, "player_right_3.png"),
+    os.path.join(player_right_animation_path, "player_right_4.png"),
+    os.path.join(player_right_animation_path, "player_right_5.png"),
+    os.path.join(player_right_animation_path, "player_right_6.png"),
+    os.path.join(player_right_animation_path, "player_right_7.png"),
+    os.path.join(player_right_animation_path, "player_right_8.png"),
+    os.path.join(player_right_animation_path, "player_right_9.png"),
+    os.path.join(player_right_animation_path, "player_right_10.png"),
+    os.path.join(player_right_animation_path, "player_right_11.png"),
+    os.path.join(player_right_animation_path, "player_right_12.png"),
+    os.path.join(player_right_animation_path, "player_right_13.png"),
+    os.path.join(player_right_animation_path, "player_right_14.png"),
+]
 
 # entities dimensions
-player_width = 128
-player_height = 128
+player_width = 90
+player_height = 193
 player_dimensions = (player_width, player_height)
 
-ball_1_height = 128
-ball_1_width = 128
+ball_1_height = 100
+ball_1_width = 100
 ball_1_dimensions = (ball_1_width, ball_1_height)
-# TODO: more types
 
-# entities sizes
-player_position = screen_width // 2, screen_height - 10
+# entities positions
+player_x = screen_width // 2
+player_y = screen_height - 10
+player_position = (player_x, player_y)
 
 ball_position = screen_width // 2
+
+ground_y = screen_height - 35
 
 # ball scores
 ball_1_score = 10
@@ -41,3 +99,15 @@ ball_2_score = 8
 ball_3_score = 6
 ball_4_score = 4
 ball_5_score = 2
+
+# ball speed
+gravity = 0.1
+elasticity = 1
+wall_thickness = 10
+
+ball_1_initial_speed_x = 1
+ball_1_initial_speed_y = 1
+
+# player speed
+animation_speed = 0.4
+player_speed = 5
