@@ -1,10 +1,10 @@
 import pygame
 import sys
 
-from src.entities.ball import Ball
+from src.entities.ball import Ball, Ball_1
 from src.entities.player import Player
 from src import settings
-from src.utils import utils
+from src.utils import graphics
 
 pygame.init()
 
@@ -16,7 +16,7 @@ clock = pygame.time.Clock()
 
 background_image = pygame.image.load("assets/images/backgrounds/raouche.jpg").convert()
 background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
-background_image = utils.gaussian_blur(background_image, settings.blur_radius)
+background_image = graphics.gaussian_blur(background_image, settings.blur_radius)
 
 ground_image = pygame.image.load("assets/images/sprites/ground.png").convert()
 ground_image = pygame.transform.scale(ground_image, (WIDTH, 80))
@@ -24,7 +24,7 @@ ground_image = pygame.transform.scale(ground_image, (WIDTH, 80))
 player = Player()
 player_group = pygame.sprite.GroupSingle(player)
 
-ball = Ball(ball_type=1,  position=(400, 300))
+ball = Ball_1()
 ball_group = pygame.sprite.GroupSingle(ball)
 
 running = True

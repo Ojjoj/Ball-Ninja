@@ -7,8 +7,9 @@ import os
 - animations speed
 - entities dimensions
 - entities positions
-- ball scores
-- ball speed
+- balls scores
+- balls speeds
+- balls children
 - player speed
 """
 
@@ -89,24 +90,35 @@ player_x = screen_width // 2
 player_y = screen_height - 10
 player_position = (player_x, player_y)
 
-ball_position = screen_width // 2
+ball_1_x = screen_width // 2
+ball_1_y = 100
+ball_1_position = (ball_1_x, ball_1_y)
 
 ground_y = screen_height - 35
 
-# ball scores
+# balls scores
 ball_1_score = 10
 ball_2_score = 8
 ball_3_score = 6
 ball_4_score = 4
 ball_5_score = 2
 
-# ball speed
+# balls speeds
 gravity = 0.1
-elasticity = 1
-wall_thickness = 10
+elasticity = 1.0
 
-ball_1_initial_speed_x = 1
-ball_1_initial_speed_y = 1
+ball_1_initial_speed_x = 2
+ball_1_initial_speed_y = -2
+ball_1_initial_speed = (ball_1_initial_speed_x, ball_1_initial_speed_y)
+
+ball_1_bounce_height = 300
+
+# balls children
+ball_1_child = ""
+ball_2_child = "Ball_1"
+ball_3_child = "Ball_2"
+ball_4_child = "Ball_3"
+ball_5_child = "Ball_4"
 
 # player speed
 animation_speed = 0.4
