@@ -51,8 +51,11 @@ class Ball(ABC, pygame.sprite.Sprite):
         if self.child_ball_class is None:
             return None
 
-        left_child_ball = self.child_ball_class(self.x - 10, self.y, Direction.LEFT)
-        right_child_ball = self.child_ball_class(self.x + 10, self.y, Direction.RIGHT)
+        left_position = (self.x - settings.ball_split_x, self.y)
+        right_position = (self.x + settings.ball_split_x, self.y)
+
+        left_child_ball = self.child_ball_class(left_position, Direction.LEFT)
+        right_child_ball = self.child_ball_class(right_position, Direction.RIGHT)
 
         return left_child_ball, right_child_ball
 

@@ -2,7 +2,7 @@ import pygame
 from src import settings
 
 class Laser(pygame.sprite.Sprite):
-    def __init__(self, x, y):
+    def __init__(self, x=settings.player_x, y=settings.ground_y):
         super().__init__()
         self.original_image = pygame.image.load(settings.laser_path).convert_alpha()
         self.current_height = 0

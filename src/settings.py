@@ -79,10 +79,21 @@ player_width = 90
 player_height = 193
 player_dimensions = (player_width, player_height)
 
-ball_1_height = 100
-ball_1_width = 100
+ball_1_height = 25
+ball_1_width = 25
 ball_1_dimensions = (ball_1_width, ball_1_height)
-
+ball_2_height = 50
+ball_2_width = 50
+ball_2_dimensions = (ball_2_width, ball_2_height)
+ball_3_height = 100
+ball_3_width = 100
+ball_3_dimensions = (ball_3_width, ball_3_height)
+ball_4_height = 150
+ball_4_width = 150
+ball_4_dimensions = (ball_4_width, ball_4_height)
+ball_5_height = 300
+ball_5_width = 300
+ball_5_dimensions = (ball_5_width, ball_5_height)
 laser_width = 20
 laser_height = 600
 laser_dimensions = (laser_width, laser_height)
@@ -92,9 +103,11 @@ player_x = screen_width // 2
 player_y = screen_height - 10
 player_position = (player_x, player_y)
 
-ball_1_x = screen_width // 2
-ball_1_y = 100
-ball_1_position = (ball_1_x, ball_1_y)
+ball_x = screen_width // 2
+ball_y = 100
+ball_position = (ball_x, ball_y)
+
+ball_split_x = 10
 
 ground_y = screen_height - 35
 
@@ -105,8 +118,24 @@ elasticity = 1.0
 ball_1_initial_speed_x = 2
 ball_1_initial_speed_y = -2
 ball_1_initial_speed = (ball_1_initial_speed_x, ball_1_initial_speed_y)
+ball_2_initial_speed_x = 2
+ball_2_initial_speed_y = -2
+ball_2_initial_speed = (ball_1_initial_speed_x, ball_1_initial_speed_y)
+ball_3_initial_speed_x = 2
+ball_3_initial_speed_y = -2
+ball_3_initial_speed = (ball_1_initial_speed_x, ball_1_initial_speed_y)
+ball_4_initial_speed_x = 2
+ball_4_initial_speed_y = -2
+ball_4_initial_speed = (ball_1_initial_speed_x, ball_1_initial_speed_y)
+ball_5_initial_speed_x = 2
+ball_5_initial_speed_y = -2
+ball_5_initial_speed = (ball_1_initial_speed_x, ball_1_initial_speed_y)
 
-ball_1_bounce_height = 300
+ball_1_bounce_height = 200
+ball_2_bounce_height = 250
+ball_3_bounce_height = 300
+ball_4_bounce_height = 450
+ball_5_bounce_height = 500
 
 animation_speed = 0.4
 player_speed = 6
