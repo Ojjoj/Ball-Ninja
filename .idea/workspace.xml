@@ -23,13 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb6a1ea7-6e61-411e-8557-d94feba01a2b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/utils/movement.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/physics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ideas" beforeDir="false" afterPath="$PROJECT_DIR$/ideas" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/ball.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/ball.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/laser.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/laser.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/graphics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/movement.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/movement.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/physics.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/physics.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

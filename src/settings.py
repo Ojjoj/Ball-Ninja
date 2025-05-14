@@ -4,13 +4,10 @@ import os
 - game settings
 - images paths
 - animations images paths
-- animations speed
 - entities dimensions
 - entities positions
+- entities speeds
 - balls scores
-- balls speeds
-- balls children
-- player speed
 """
 
 # game settings
@@ -39,6 +36,7 @@ ball_path = os.path.join(sprites_path, "ball.png")
 player_forward_path = os.path.join(sprites_path, "player_forward.png")
 player_backward_path = os.path.join(sprites_path, "player_backward.png")
 ground_path = os.path.join(sprites_path, "ground.png")
+laser_path = os.path.join(sprites_path, "laser.png")
 
 # animations images paths
 player_left_animation_path = os.path.join(sprites_path, "player_left_animation")
@@ -85,6 +83,10 @@ ball_1_height = 100
 ball_1_width = 100
 ball_1_dimensions = (ball_1_width, ball_1_height)
 
+laser_width = 20
+laser_height = 600
+laser_dimensions = (laser_width, laser_height)
+
 # entities positions
 player_x = screen_width // 2
 player_y = screen_height - 10
@@ -96,15 +98,8 @@ ball_1_position = (ball_1_x, ball_1_y)
 
 ground_y = screen_height - 35
 
-# balls scores
-ball_1_score = 10
-ball_2_score = 8
-ball_3_score = 6
-ball_4_score = 4
-ball_5_score = 2
-
-# balls speeds
-gravity = 0.1
+# entities speeds
+gravity = 0.12
 elasticity = 1.0
 
 ball_1_initial_speed_x = 2
@@ -113,13 +108,14 @@ ball_1_initial_speed = (ball_1_initial_speed_x, ball_1_initial_speed_y)
 
 ball_1_bounce_height = 300
 
-# balls children
-ball_1_child = ""
-ball_2_child = "Ball_1"
-ball_3_child = "Ball_2"
-ball_4_child = "Ball_3"
-ball_5_child = "Ball_4"
-
-# player speed
 animation_speed = 0.4
-player_speed = 5
+player_speed = 6
+
+laser_speed = 10
+
+# balls scores
+ball_1_score = 10
+ball_2_score = 8
+ball_3_score = 6
+ball_4_score = 4
+ball_5_score = 2
