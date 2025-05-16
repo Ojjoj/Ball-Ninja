@@ -6,12 +6,12 @@ def velocity(gravity, bounce_height):
     return math.sqrt(2 * gravity * bounce_height)
 
 
-def bounce(x, y, x_speed, y_speed, width, height, bounce_height):
+def bounce(x, y, x_speed, y_speed, width, height, bounce_height, ground_y):
     gravity = settings.gravity
     elasticity = settings.elasticity
     screen_width = settings.screen_width
 
-    floor_y = settings.ground_y - height / 2
+    floor_y = ground_y - height / 2
     ceiling_y = height / 2
     min_x = width / 2
     max_x = screen_width - width / 2
@@ -42,3 +42,4 @@ def bounce(x, y, x_speed, y_speed, width, height, bounce_height):
         x_speed *= -elasticity
 
     return x, y, x_speed, y_speed
+

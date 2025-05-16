@@ -2,6 +2,7 @@ import os
 
 """
 - game settings
+- score settings
 - images paths
 - animations images paths
 - entities dimensions
@@ -19,6 +20,14 @@ blur_radius = 2
 screen_width = 800
 screen_height = 600
 screen_dimensions = (screen_width, screen_height)
+
+# score settings
+score_color = (255, 255, 255)
+score_font = "Arial"
+score_font_size = 30
+score_x = screen_width - 30
+score_y = 20
+score_position = (score_x, score_y)
 
 # images paths
 images_path = os.path.join("assets", "images")
@@ -139,6 +148,10 @@ ball_5_bounce_height = 500
 
 animation_speed = 0.4
 player_speed = 6
+player_die_speed_x = 6
+player_die_speed_y = 6
+player_die_speed = (player_die_speed_x, player_die_speed_y)
+player_death_time = 3
 
 laser_speed = 10
 

@@ -3,6 +3,7 @@ import pygame
 from abc import ABC, abstractmethod
 
 from src import settings
+from src.settings import ground_y
 from src.utils import physics
 from src.utils.movement import Direction
 
@@ -67,7 +68,8 @@ class Ball(ABC, pygame.sprite.Sprite):
             y_speed=self.y_speed,
             width=self.width,
             height=self.height,
-            bounce_height=self.bounce_height
+            bounce_height=self.bounce_height,
+            ground_y=settings.ground_y,
         )
         self.rect.center = (int(self.x), int(self.y))
 

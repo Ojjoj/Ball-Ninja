@@ -10,6 +10,7 @@ def load_levels():
     level_3 = Level_3()
     return [level_1, level_2, level_3]
 
+
 class Level(ABC):
     def __init__(self):
         self.player = Player()
@@ -19,6 +20,7 @@ class Level(ABC):
         self.ball_group = pygame.sprite.Group()
 
         self.running = True
+        self.collision_score = 0
 
         self.background = self.get_background_image()
         self.ground = self.get_ground()
@@ -68,14 +70,28 @@ class Level(ABC):
             self.running = False
 
     def handle_collisions(self):
+        self.laser_ball_collision()
+        self.player_ball_collision()
+
+    def laser_ball_collision(self):
+        self.collision_score = 0
         for laser in self.laser_group:
             ball_collided = pygame.sprite.spritecollideany(laser, self.ball_group)
             if ball_collided:
                 laser.kill()
                 self.ball_group.remove(ball_collided)
+                self.collision_score = ball_collided.score
                 children_balls = ball_collided.split()
                 if children_balls is not None:
                     self.ball_group.add(*children_balls)
+
+    def player_ball_collision(self):
+        player_collided = pygame.sprite.spritecollideany(self.player, self.ball_group)
+        if player_collided:
+            self.player.lives -= 1
+            self.player.die()
+            if self.player.lives <= 0:
+                self.running = False
 
     def draw(self, screen):
         screen.blit(self.background, (0, 0))
@@ -83,6 +99,10 @@ class Level(ABC):
         self.laser_group.draw(screen)
         self.ball_group.draw(screen)
         self.player_group.draw(screen)
+
+    def restart_level(self):
+        self.__init__()
+
 
 # Level_1
 class Level_1(Level):
@@ -97,6 +117,7 @@ class Level_1(Level):
     def init_entities(self):
         self.ball_group.add(Ball_3(settings.ball_position))
 
+
 # Level_2
 class Level_2(Level):
     @property
@@ -110,6 +131,7 @@ class Level_2(Level):
     def init_entities(self):
         self.ball_group.add(Ball_4(settings.ball_position))
 
+
 # Level_3
 class Level_3(Level):
     @property
@@ -122,4 +144,3 @@ class Level_3(Level):
 
     def init_entities(self):
         self.ball_group.add(Ball_5(settings.ball_position))
-

@@ -1,6 +1,8 @@
 import pygame
 
 from src import settings
+from src.settings import ground_y
+from src.utils import physics
 
 
 class Player(pygame.sprite.Sprite):
@@ -14,17 +16,24 @@ class Player(pygame.sprite.Sprite):
 
         self.direction = "idle"
         self.frame_index = 0
+        self.lives = 3
+        self.alive = True
+        self.death_time = settings.player_death_time
 
         self.image = self.idle_image
         self.rect = self.image.get_rect(midbottom=position)
+        self.width, self.height = settings.player_dimensions
+        self.x, self.y = float(self.rect.centerx), float(self.rect.centery)
+        self.x_speed, self.y_speed = settings.player_die_speed
 
         self.left_animation = self.load_animation("left")
         self.right_animation = self.load_animation("right")
 
     def load_animation(self, animation_type):
+        animation_images_paths = []
         if animation_type == "right":
             animation_images_paths = settings.player_right_animation_images_paths
-        else:
+        elif animation_type == "left":
             animation_images_paths = settings.player_left_animation_images_paths
 
         images = []
@@ -35,7 +44,10 @@ class Player(pygame.sprite.Sprite):
         return images
 
     def update(self, keys):
-        # Handle input
+        if not self.alive:
+            self.die()
+            return
+
         if keys[pygame.K_LEFT]:
             self.direction = "left"
             self.rect.x -= settings.player_speed
@@ -46,10 +58,8 @@ class Player(pygame.sprite.Sprite):
             self.direction = "idle"
             self.frame_index = 0
 
-        # Clamp to screen
         self.rect.clamp_ip(pygame.Rect(0, 0, settings.screen_width, settings.screen_height))
 
-        # Update animation
         if self.direction == "left":
             self.frame_index += settings.animation_speed
             if self.frame_index >= len(self.left_animation):
@@ -62,3 +72,20 @@ class Player(pygame.sprite.Sprite):
             self.image = self.right_animation[int(self.frame_index)]
         else:
             self.image = self.idle_image
+
+    def die(self):
+        self.alive = False
+        image = pygame.image.load(settings.player_forward_path).convert_alpha()
+        self.image = pygame.transform.scale(image, settings.player_dimensions)
+        physics.bounce(
+            x=self.x,
+            y=self.y,
+            x_speed=self.x_speed,
+            y_speed=self.y_speed,
+            width=self.width,
+            height=self.height,
+            bounce_height=self.height,
+            ground_y=settings.ground_y + 200
+        )
+        self.rect.centerx = int(self.x)
+        self.rect.centery = int(self.y)
