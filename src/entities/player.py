@@ -1,12 +1,11 @@
 import pygame
 
 from src import settings
-from src.settings import ground_y
 from src.utils import physics
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, position=settings.player_position):
+    def __init__(self, lives=settings.initial_lives, position=settings.player_position):
         super().__init__()
 
         player_image_path = settings.player_backward_path
@@ -16,9 +15,9 @@ class Player(pygame.sprite.Sprite):
 
         self.direction = "idle"
         self.frame_index = 0
-        self.lives = 3
-        self.alive = True
-        self.death_time = settings.player_death_time
+        self.lives = lives
+        self.falling = False
+        self.dead = False
 
         self.image = self.idle_image
         self.rect = self.image.get_rect(midbottom=position)
@@ -44,10 +43,6 @@ class Player(pygame.sprite.Sprite):
         return images
 
     def update(self, keys):
-        if not self.alive:
-            self.die()
-            return
-
         if keys[pygame.K_LEFT]:
             self.direction = "left"
             self.rect.x -= settings.player_speed
@@ -59,6 +54,9 @@ class Player(pygame.sprite.Sprite):
             self.frame_index = 0
 
         self.rect.clamp_ip(pygame.Rect(0, 0, settings.screen_width, settings.screen_height))
+
+        self.x = self.rect.centerx
+        self.y = self.rect.centery
 
         if self.direction == "left":
             self.frame_index += settings.animation_speed
@@ -74,10 +72,10 @@ class Player(pygame.sprite.Sprite):
             self.image = self.idle_image
 
     def die(self):
-        self.alive = False
-        image = pygame.image.load(settings.player_forward_path).convert_alpha()
-        self.image = pygame.transform.scale(image, settings.player_dimensions)
-        physics.bounce(
+        if not self.falling:
+            self.falling = True
+
+        self.x, self.y, self.x_speed, self.y_speed = physics.bounce(
             x=self.x,
             y=self.y,
             x_speed=self.x_speed,
@@ -85,7 +83,9 @@ class Player(pygame.sprite.Sprite):
             width=self.width,
             height=self.height,
             bounce_height=self.height,
-            ground_y=settings.ground_y + 200
+            ground_y=settings.ground_y + 500
         )
-        self.rect.centerx = int(self.x)
-        self.rect.centery = int(self.y)
+        self.rect.center = (int(self.x), int(self.y))
+
+    def has_fallen_off_screen(self):
+        return self.y > settings.screen_height + self.height

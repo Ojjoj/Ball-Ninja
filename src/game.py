@@ -13,6 +13,7 @@ class Game:
         pygame.display.set_caption(settings.game_name)
         self.clock = pygame.time.Clock()
         self.total_score = 0
+        self.lives = settings.initial_lives
         self.font = pygame.font.SysFont(settings.score_font, settings.score_font_size)
         self.levels = iter(load_levels())
         self.current_level = next(self.levels, None)
@@ -23,23 +24,29 @@ class Game:
             self.current_level = next(self.levels, None)
         self.exit()
 
-    def draw_score(self):
+    def draw_ui(self):
+        self._draw_score()
+        self._draw_lives()
+
+    def _draw_score(self):
         text = self.font.render(f"Score: {self.total_score}", True, settings.score_color)
         text_rect = text.get_rect(topright=settings.score_position)
         self.screen.blit(text, text_rect)
+
+    def _draw_lives(self):
+        lives_text = self.font.render(f"Lives: {self.lives}", True, settings.score_color)
+        lives_rect = lives_text.get_rect(topleft=settings.lives_position)
+        self.screen.blit(lives_text, lives_rect)
 
     def play_level(self, level):
         level.start(self.screen)
         while level.running:
             self.handle_events(level)
-            if not level.player.alive:
-                if pygame.time.get_ticks() >= level.player.death_time:
-                    level.restart_level()
             level.update()
             if level.collision_score:
                 self.total_score += level.collision_score
             level.draw(self.screen)
-            self.draw_score()
+            self.draw_ui()
             pygame.display.flip()
             self.clock.tick(settings.fps)
 

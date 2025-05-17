@@ -60,6 +60,11 @@ class Level(ABC):
         self.running = True
 
     def update(self):
+        if self.player.dead:
+            self.player.die()
+            if self.player.has_fallen_off_screen():
+                self.restart_level()
+            return
         keys = pygame.key.get_pressed()
         self.player_group.update(keys)
         self.ball_group.update()
@@ -86,10 +91,10 @@ class Level(ABC):
                     self.ball_group.add(*children_balls)
 
     def player_ball_collision(self):
-        player_collided = pygame.sprite.spritecollideany(self.player, self.ball_group)
+        player_collided = pygame.sprite.spritecollideany(self.player, self.ball_group, pygame.sprite.collide_mask)
         if player_collided:
             self.player.lives -= 1
-            self.player.die()
+            self.player.dead = True
             if self.player.lives <= 0:
                 self.running = False
 

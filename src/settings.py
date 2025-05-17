@@ -21,6 +21,13 @@ screen_width = 800
 screen_height = 600
 screen_dimensions = (screen_width, screen_height)
 
+
+# lives settings
+initial_lives = 3
+lives_x = 10
+lives_y = 10
+lives_position = (lives_x, lives_y)
+
 # score settings
 score_color = (255, 255, 255)
 score_font = "Arial"
@@ -148,10 +155,9 @@ ball_5_bounce_height = 500
 
 animation_speed = 0.4
 player_speed = 6
-player_die_speed_x = 6
+player_die_speed_x = 0
 player_die_speed_y = 6
 player_die_speed = (player_die_speed_x, player_die_speed_y)
-player_death_time = 3
 
 laser_speed = 10
 
