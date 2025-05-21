@@ -47,12 +47,12 @@ class Game:
             self.draw_ui()
             pygame.display.flip()
             self.clock.tick(settings.fps)
-        else:
+        if level.player.is_dead:
             if self.total_lives > 0:
-                self.play_level(type(level)())
+                self.current_level = type(level)()
+                self.play_level(self.current_level)
             else:
                 self.exit()
-
 
     def handle_events(self, level):
         for event in pygame.event.get():
