@@ -4,14 +4,9 @@ from src.entities.ball import *
 from src.utils import graphics
 
 
-def load_levels():
-    level_1 = Level_1()
-    level_2 = Level_2()
-    level_3 = Level_3()
-    return [level_1, level_2, level_3]
-
-
 class Level(ABC):
+    game = None
+
     def __init__(self):
         self.player = Player()
         self.player_group = pygame.sprite.GroupSingle(self.player)
@@ -21,6 +16,7 @@ class Level(ABC):
 
         self.running = True
         self.collision_score = 0
+        self.lives_used = 0
 
         self.background = self.get_background_image()
         self.ground = self.get_ground()
@@ -56,14 +52,14 @@ class Level(ABC):
                 laser = Laser(x)
                 self.laser_group.add(laser)
 
-    def start(self, screen):
+    def start(self):
         self.running = True
 
     def update(self):
-        if self.player.dead:
-            self.player.die()
+        if self.player.is_dead:
+            self.player.die_animation()
             if self.player.has_fallen_off_screen():
-                self.restart_level()
+                self.running = False
             return
         keys = pygame.key.get_pressed()
         self.player_group.update(keys)
@@ -85,7 +81,7 @@ class Level(ABC):
             if ball_collided:
                 laser.kill()
                 self.ball_group.remove(ball_collided)
-                self.collision_score = ball_collided.score
+                Level.game.score += ball_collided.score
                 children_balls = ball_collided.split()
                 if children_balls is not None:
                     self.ball_group.add(*children_balls)
@@ -93,10 +89,8 @@ class Level(ABC):
     def player_ball_collision(self):
         player_collided = pygame.sprite.spritecollideany(self.player, self.ball_group, pygame.sprite.collide_mask)
         if player_collided:
-            self.player.lives -= 1
-            self.player.dead = True
-            if self.player.lives <= 0:
-                self.running = False
+            Level.game.total_lives -= 1
+            self.player.is_dead = True
 
     def draw(self, screen):
         screen.blit(self.background, (0, 0))
@@ -107,6 +101,13 @@ class Level(ABC):
 
     def restart_level(self):
         self.__init__()
+
+    @staticmethod
+    def load_levels():
+        level_1 = Level_1()
+        level_2 = Level_2()
+        level_3 = Level_3()
+        return [level_1, level_2, level_3]
 
 
 # Level_1

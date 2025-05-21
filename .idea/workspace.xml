@@ -27,7 +27,6 @@
       <change beforePath="$PROJECT_DIR$/src/entities/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/levels/levels.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/levels.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -5,7 +5,7 @@ from src.utils import physics
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, lives=settings.initial_lives, position=settings.player_position):
+    def __init__(self, position=settings.player_position):
         super().__init__()
 
         player_image_path = settings.player_backward_path
@@ -15,9 +15,8 @@ class Player(pygame.sprite.Sprite):
 
         self.direction = "idle"
         self.frame_index = 0
-        self.lives = lives
-        self.falling = False
-        self.dead = False
+        self.is_falling = False
+        self.is_dead = False
 
         self.image = self.idle_image
         self.rect = self.image.get_rect(midbottom=position)
@@ -71,9 +70,9 @@ class Player(pygame.sprite.Sprite):
         else:
             self.image = self.idle_image
 
-    def die(self):
-        if not self.falling:
-            self.falling = True
+    def die_animation(self):
+        if not self.is_falling:
+            self.is_falling = True
 
         self.x, self.y, self.x_speed, self.y_speed = physics.bounce(
             x=self.x,
