@@ -3,38 +3,55 @@ import sys
 
 from src import settings
 from src.levels.levels import Level
+from src.states.game_states import *
 
 
 class Game:
     def __init__(self):
         pygame.init()
         Level.game = self
-        self.screen = pygame.display.set_mode(settings.screen_dimensions)
         pygame.display.set_caption(settings.game_name)
+
+        self.screen = pygame.display.set_mode(settings.screen_dimensions)
         self.clock = pygame.time.Clock()
         self.score = 0
         self.total_lives = settings.initial_lives
-        self.font = pygame.font.SysFont(settings.score_font, settings.score_font_size)
         self.levels = iter(Level.load_levels())
         self.current_level = next(self.levels, None)
 
     def run(self):
-        while self.current_level:
-            self.play_level(self.current_level)
-            self.current_level = next(self.levels, None)
-        self.exit()
+        StartState(self).run()
+        while True:
+            if self.current_level:
+                self.play_level(self.current_level)
+                if self.total_lives > 0:
+                    WinState(self).run()
+                    self.current_level = next(self.levels, None)
+                else:
+                    GameOverState(self).run()
+                    self.reset_game()
+            else:
+                GameOverState(self).run()
+                self.reset_game()
+
+    def reset_game(self):
+        self.score = 0
+        self.total_lives = settings.initial_lives
+        self.levels = iter(Level.load_levels())
+        self.current_level = next(self.levels, None)
 
     def draw_ui(self):
-        self.draw_score()
-        self.draw_lives()
+        font = pygame.font.SysFont(settings.score_font, settings.score_font_size)
+        self.draw_score(font)
+        self.draw_lives(font)
 
-    def draw_score(self):
-        text = self.font.render(f"Score: {self.score}", True, settings.score_color)
-        text_rect = text.get_rect(topright=settings.score_position)
-        self.screen.blit(text, text_rect)
+    def draw_score(self, font):
+        score_text = font.render(f"Score: {self.score}", True, settings.score_color)
+        score_rect = score_text.get_rect(topright=settings.score_position)
+        self.screen.blit(score_text, score_rect)
 
-    def draw_lives(self):
-        lives_text = self.font.render(f"Lives: {self.total_lives}", True, settings.score_color)
+    def draw_lives(self, font):
+        lives_text = font.render(f"Lives: {self.total_lives}", True, settings.score_color)
         lives_rect = lives_text.get_rect(topleft=settings.lives_position)
         self.screen.blit(lives_text, lives_rect)
 
@@ -51,8 +68,6 @@ class Game:
             if self.total_lives > 0:
                 self.current_level = type(level)()
                 self.play_level(self.current_level)
-            else:
-                self.exit()
 
     def handle_events(self, level):
         for event in pygame.event.get():

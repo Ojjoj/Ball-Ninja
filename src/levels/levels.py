@@ -1,6 +1,7 @@
 from src.entities.player import Player
 from src.entities.laser import Laser
 from src.entities.ball import *
+from src.settings import ball_4_width
 from src.utils import graphics
 
 
@@ -121,7 +122,8 @@ class Level_1(Level):
         return settings.level_1_background_path
 
     def init_entities(self):
-        self.ball_group.add(Ball_3(settings.ball_position))
+        ball = Ball_3(settings.ball_position)
+        self.ball_group.add(ball)
 
 
 # Level_2
@@ -135,7 +137,10 @@ class Level_2(Level):
         return settings.level_2_background_path
 
     def init_entities(self):
-        self.ball_group.add(Ball_4(settings.ball_position))
+        ball_1 = Ball_3((settings.ball_3_width, settings.ball_y))
+        ball_2 = Ball_3((settings.screen_width - settings.ball_3_width, settings.ball_y), Direction.LEFT)
+        self.ball_group.add(ball_1)
+        self.ball_group.add(ball_2)
 
 
 # Level_3

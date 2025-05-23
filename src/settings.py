@@ -38,9 +38,8 @@ score_position = (score_x, score_y)
 
 # images paths
 images_path = os.path.join("assets", "images")
-backgrounds_path = os.path.join(images_path, "backgrounds")
-sprites_path = os.path.join(images_path, "sprites")
 
+backgrounds_path = os.path.join(images_path, "backgrounds")
 level_1_background_path = os.path.join(backgrounds_path, "baalbek.jpg")
 level_2_background_path = os.path.join(backgrounds_path, "beirut.jpg")
 level_3_background_path = os.path.join(backgrounds_path, "raouche.jpg")
@@ -48,11 +47,18 @@ level_4_background_path = os.path.join(backgrounds_path, "saida.jpg")
 level_5_background_path = os.path.join(backgrounds_path, "tyre.jpg")
 level_6_background_path = os.path.join(backgrounds_path, "hermel.jpg")
 
+sprites_path = os.path.join(images_path, "sprites")
 ball_path = os.path.join(sprites_path, "ball.png")
 player_forward_path = os.path.join(sprites_path, "player_forward.png")
 player_backward_path = os.path.join(sprites_path, "player_backward.png")
 ground_path = os.path.join(sprites_path, "ground.png")
 laser_path = os.path.join(sprites_path, "laser.png")
+
+menus_path = os.path.join(images_path, "menus")
+menus_backgrounds_path = os.path.join(menus_path, "backgrounds")
+starting_image_path = os.path.join(menus_backgrounds_path, "starting_image.png")
+winning_image_path = os.path.join(menus_backgrounds_path, "winning_image.png")
+loosing_image_path = os.path.join(menus_backgrounds_path, "loosing_image.png")
 
 # animations images paths
 player_left_animation_path = os.path.join(sprites_path, "player_left_animation")
