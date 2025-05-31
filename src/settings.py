@@ -53,6 +53,7 @@ player_forward_path = os.path.join(sprites_path, "player_forward.png")
 player_backward_path = os.path.join(sprites_path, "player_backward.png")
 ground_path = os.path.join(sprites_path, "ground.png")
 laser_path = os.path.join(sprites_path, "laser.png")
+stone_path = os.path.join(sprites_path, "stone.png")
 
 menus_path = os.path.join(images_path, "menus")
 menus_backgrounds_path = os.path.join(menus_path, "backgrounds")
@@ -96,11 +97,13 @@ player_right_animation_images_paths = [
     os.path.join(player_right_animation_path, "player_right_14.png"),
 ]
 
-# entities dimensions
+## entities dimensions
+# player dimensions
 player_width = 90
 player_height = 193
 player_dimensions = (player_width, player_height)
 
+# ball dimensions
 ball_1_height = 25
 ball_1_width = 25
 ball_1_dimensions = (ball_1_width, ball_1_height)
@@ -116,9 +119,22 @@ ball_4_dimensions = (ball_4_width, ball_4_height)
 ball_5_height = 300
 ball_5_width = 300
 ball_5_dimensions = (ball_5_width, ball_5_height)
+
+# laser dimensions
 laser_width = 20
 laser_height = 600
 laser_dimensions = (laser_width, laser_height)
+
+# stone dimensions
+stone_1_height = 30
+stone_1_width = 120
+stone_1_dimensions = (stone_1_width, stone_1_height)
+stone_2_height = 30
+stone_2_width = 120
+stone_2_dimensions = (stone_2_width, stone_2_height)
+stone_3_height = 30
+stone_3_width = 120
+stone_3_dimensions = (stone_3_width, stone_3_height)
 
 # entities positions
 player_x = screen_width // 2

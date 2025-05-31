@@ -1,8 +1,12 @@
+from abc import ABC, abstractmethod
+import pygame
+
 from src.entities.player import Player
 from src.entities.laser import Laser
 from src.entities.ball import *
-from src.settings import ball_4_width
-from src.utils import graphics
+from src.entities.stone import *
+from src import settings
+from src.utils import graphics, physics
 
 
 class Level(ABC):
@@ -14,6 +18,7 @@ class Level(ABC):
 
         self.laser_group = pygame.sprite.Group()
         self.ball_group = pygame.sprite.Group()
+        self.stone_group = pygame.sprite.Group()
 
         self.running = True
         self.collision_score = 0
@@ -62,10 +67,12 @@ class Level(ABC):
             if self.player.has_fallen_off_screen():
                 self.running = False
             return
+
         keys = pygame.key.get_pressed()
         self.player_group.update(keys)
         self.ball_group.update()
         self.laser_group.update()
+
         self.handle_collisions()
 
         if len(self.ball_group) == 0:
@@ -74,6 +81,8 @@ class Level(ABC):
     def handle_collisions(self):
         self.laser_ball_collision()
         self.player_ball_collision()
+        self.ball_stone_collision()
+        self.laser_stone_collision()
 
     def laser_ball_collision(self):
         self.collision_score = 0
@@ -93,9 +102,25 @@ class Level(ABC):
             Level.game.total_lives -= 1
             self.player.is_dead = True
 
+    def ball_stone_collision(self):
+        for ball in self.ball_group:
+            collided_stone = pygame.sprite.spritecollideany(ball, self.stone_group, pygame.sprite.collide_mask)
+            if not collided_stone:
+                continue
+            ball.x, ball.y, ball.x_speed, ball.y_speed = physics.collide_with_stone(
+                ball, collided_stone
+            )
+            ball.rect.center = (int(ball.x), int(ball.y))
+
+    def laser_stone_collision(self):
+        for laser in self.laser_group:
+            if pygame.sprite.spritecollideany(laser, self.stone_group, pygame.sprite.collide_mask):
+                laser.kill()
+
     def draw(self, screen):
         screen.blit(self.background, (0, 0))
         screen.blit(self.ground, (0, settings.screen_height - 80))
+        self.stone_group.draw(screen)
         self.laser_group.draw(screen)
         self.ball_group.draw(screen)
         self.player_group.draw(screen)
@@ -124,13 +149,14 @@ class Level_1(Level):
     def init_entities(self):
         ball = Ball_3(settings.ball_position)
         self.ball_group.add(ball)
+        self.stone_group.add(Stone_1((300, 300)))
 
 
 # Level_2
 class Level_2(Level):
     @property
     def level_number(self):
-        return 1
+        return 2
 
     @property
     def background_path(self):
@@ -141,13 +167,14 @@ class Level_2(Level):
         ball_2 = Ball_3((settings.screen_width - settings.ball_3_width, settings.ball_y), Direction.LEFT)
         self.ball_group.add(ball_1)
         self.ball_group.add(ball_2)
+        self.stone_group.add(Stone_2((400, 180)))
 
 
 # Level_3
 class Level_3(Level):
     @property
     def level_number(self):
-        return 1
+        return 3
 
     @property
     def background_path(self):
@@ -155,3 +182,4 @@ class Level_3(Level):
 
     def init_entities(self):
         self.ball_group.add(Ball_5(settings.ball_position))
+        self.stone_group.add(Stone_3((500, 150)))
