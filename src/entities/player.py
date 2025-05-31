@@ -20,6 +20,8 @@ class Player(pygame.sprite.Sprite):
 
         self.image = self.idle_image
         self.rect = self.image.get_rect(midbottom=position)
+        self.mask = pygame.mask.from_surface(self.image)
+
         self.width, self.height = settings.player_dimensions
         self.x, self.y = float(self.rect.centerx), float(self.rect.centery)
         self.x_speed, self.y_speed = settings.player_die_speed
@@ -69,6 +71,8 @@ class Player(pygame.sprite.Sprite):
             self.image = self.right_animation[int(self.frame_index)]
         else:
             self.image = self.idle_image
+
+        self.mask = pygame.mask.from_surface(self.image)
 
     def die_animation(self):
         if not self.is_falling:

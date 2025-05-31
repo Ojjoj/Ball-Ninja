@@ -124,6 +124,20 @@ class Level(ABC):
         self.laser_group.draw(screen)
         self.ball_group.draw(screen)
         self.player_group.draw(screen)
+        self.draw_mask_outline(screen, self.player, color=(0, 255, 0))  # Green
+
+        for ball in self.ball_group:
+            self.draw_mask_outline(screen, ball, color=(0, 255, 0))  # Green
+
+    def draw_mask_outline(self, surface, sprite, color=(0, 255, 0)):
+        """Draws the outline of a sprite's mask in the given color."""
+        if not hasattr(sprite, 'mask'):
+            sprite.mask = pygame.mask.from_surface(sprite.image)
+        outline = sprite.mask.outline()
+        if outline:
+            shifted_outline = [(x + sprite.rect.left, y + sprite.rect.top) for x, y in outline]
+            if len(shifted_outline) > 1:
+                pygame.draw.lines(surface, color, True, shifted_outline, 1)
 
     def restart_level(self):
         self.__init__()
