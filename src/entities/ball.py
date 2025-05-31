@@ -3,7 +3,6 @@ import pygame
 from abc import ABC, abstractmethod
 
 from src import settings
-from src.settings import ground_y
 from src.utils import physics
 from src.utils.movement import Direction
 

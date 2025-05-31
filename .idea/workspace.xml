@@ -23,10 +23,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb6a1ea7-6e61-411e-8557-d94feba01a2b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/levels/level_1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/levels/level_2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/levels/level_3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/levels/level_4.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/levels/level_5.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/levels/level_6.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/levels/level_loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/levels/levels.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/levels.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/physics.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/physics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/sprites/stone.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/sprites/stone.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/ball.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/ball.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/levels/levels.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/level.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,15 +66,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.main (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.player.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.main (1).executor": "Run",
+    "Python.player.executor": "Run",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/pc/Desktop/Programming/Programming/Python/Projects/Ball-Ninja/src/levels",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pc\Desktop\Programming\Programming\Python\Projects\Ball-Ninja\src\levels" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.main (1)">
     <configuration name="ball" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Ball Ninja" />
@@ -89,7 +104,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="levels" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="level" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Ball Ninja" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -102,7 +117,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\pc\Desktop\Programming\Programming\Python\Projects\Ball-Ninja\src\levels\levels.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\pc\Desktop\Programming\Programming\Python\Projects\Ball-Ninja\src\levels\level.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />

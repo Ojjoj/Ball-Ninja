@@ -2,8 +2,9 @@ import pygame
 import sys
 
 from src import settings
-from src.levels.levels import Level
+from src.levels.level import Level
 from src.states.game_states import *
+from src.levels import level_loader
 
 
 class Game:
@@ -16,7 +17,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.score = 0
         self.total_lives = settings.initial_lives
-        self.levels = iter(Level.load_levels())
+        self.levels = iter(level_loader.load_levels())
         self.current_level = next(self.levels, None)
 
     def run(self):

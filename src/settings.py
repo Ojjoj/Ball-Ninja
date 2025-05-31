@@ -127,13 +127,13 @@ laser_dimensions = (laser_width, laser_height)
 
 # stone dimensions
 stone_1_height = 30
-stone_1_width = 120
+stone_1_width = 80
 stone_1_dimensions = (stone_1_width, stone_1_height)
 stone_2_height = 30
-stone_2_width = 120
+stone_2_width = 160
 stone_2_dimensions = (stone_2_width, stone_2_height)
 stone_3_height = 30
-stone_3_width = 120
+stone_3_width = 260
 stone_3_dimensions = (stone_3_width, stone_3_height)
 
 # entities positions

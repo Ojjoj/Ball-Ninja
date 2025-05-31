@@ -1,9 +1,5 @@
-from abc import ABC, abstractmethod
-import pygame
-
 from src.entities.player import Player
 from src.entities.laser import Laser
-from src.entities.ball import *
 from src.entities.stone import *
 from src import settings
 from src.utils import graphics, physics
@@ -124,76 +120,7 @@ class Level(ABC):
         self.laser_group.draw(screen)
         self.ball_group.draw(screen)
         self.player_group.draw(screen)
-        self.draw_mask_outline(screen, self.player, color=(0, 255, 0))  # Green
 
-        for ball in self.ball_group:
-            self.draw_mask_outline(screen, ball, color=(0, 255, 0))  # Green
-
-    def draw_mask_outline(self, surface, sprite, color=(0, 255, 0)):
-        """Draws the outline of a sprite's mask in the given color."""
-        if not hasattr(sprite, 'mask'):
-            sprite.mask = pygame.mask.from_surface(sprite.image)
-        outline = sprite.mask.outline()
-        if outline:
-            shifted_outline = [(x + sprite.rect.left, y + sprite.rect.top) for x, y in outline]
-            if len(shifted_outline) > 1:
-                pygame.draw.lines(surface, color, True, shifted_outline, 1)
 
     def restart_level(self):
         self.__init__()
-
-    @staticmethod
-    def load_levels():
-        level_1 = Level_1()
-        level_2 = Level_2()
-        level_3 = Level_3()
-        return [level_1, level_2, level_3]
-
-
-# Level_1
-class Level_1(Level):
-    @property
-    def level_number(self):
-        return 1
-
-    @property
-    def background_path(self):
-        return settings.level_1_background_path
-
-    def init_entities(self):
-        ball = Ball_3(settings.ball_position)
-        self.ball_group.add(ball)
-        self.stone_group.add(Stone_1((300, 300)))
-
-
-# Level_2
-class Level_2(Level):
-    @property
-    def level_number(self):
-        return 2
-
-    @property
-    def background_path(self):
-        return settings.level_2_background_path
-
-    def init_entities(self):
-        ball_1 = Ball_3((settings.ball_3_width, settings.ball_y))
-        ball_2 = Ball_3((settings.screen_width - settings.ball_3_width, settings.ball_y), Direction.LEFT)
-        self.ball_group.add(ball_1)
-        self.ball_group.add(ball_2)
-        self.stone_group.add(Stone_2((400, 180)))
-
-
-# Level_3
-class Level_3(Level):
-    @property
-    def level_number(self):
-        return 3
-
-    @property
-    def background_path(self):
-        return settings.level_3_background_path
-
-    def init_entities(self):
-        self.ball_group.add(Ball_5(settings.ball_position))
-        self.stone_group.add(Stone_3((500, 150)))
