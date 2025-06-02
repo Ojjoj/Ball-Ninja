@@ -23,7 +23,7 @@ screen_dimensions = (screen_width, screen_height)
 
 
 # lives settings
-initial_lives = 3
+initial_lives = 999
 lives_x = 10
 lives_y = 10
 lives_position = (lives_x, lives_y)
